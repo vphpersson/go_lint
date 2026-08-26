@@ -1,6 +1,6 @@
 module github.com/vphpersson/go_lint
 
-go 1.26.5
+go 1.27
 
 require (
 	github.com/golangci/plugin-module-register v0.1.2
