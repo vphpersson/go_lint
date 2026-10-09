@@ -5,12 +5,14 @@ package gclplugin
 import (
 	"github.com/golangci/plugin-module-register/register"
 	"github.com/vphpersson/go_lint/pkg/analyzer/struct_tag"
+	"github.com/vphpersson/go_lint/pkg/analyzer/url_concat"
 	"github.com/vphpersson/go_lint/pkg/analyzer/variadic_append"
 	"golang.org/x/tools/go/analysis"
 )
 
 func init() {
 	register.Plugin("structtaglint", newStructTagPlugin)
+	register.Plugin("urlconcat", newURLConcatPlugin)
 	register.Plugin("variadicappend", newVariadicAppendPlugin)
 }
 
@@ -37,4 +39,9 @@ func newStructTagPlugin(_ any) (register.LinterPlugin, error) {
 // object it resolves to, rather than against a name.
 func newVariadicAppendPlugin(_ any) (register.LinterPlugin, error) {
 	return &plugin{analyzer: variadic_append.Analyzer, loadMode: register.LoadModeTypesInfo}, nil
+}
+
+// newURLConcatPlugin asks for type information: constants are folded, and the url.URL type and the URL-taking functions are recognized by their objects.
+func newURLConcatPlugin(_ any) (register.LinterPlugin, error) {
+	return &plugin{analyzer: url_concat.Analyzer, loadMode: register.LoadModeTypesInfo}, nil
 }

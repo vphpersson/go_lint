@@ -3,6 +3,7 @@ package main
 
 import (
 	"github.com/vphpersson/go_lint/pkg/analyzer/struct_tag"
+	"github.com/vphpersson/go_lint/pkg/analyzer/url_concat"
 	"github.com/vphpersson/go_lint/pkg/analyzer/variadic_append"
 	"golang.org/x/tools/go/analysis/multichecker"
 )
@@ -10,6 +11,7 @@ import (
 func main() {
 	multichecker.Main(
 		struct_tag.Analyzer,
+		url_concat.Analyzer,
 		variadic_append.Analyzer,
 	)
 }
